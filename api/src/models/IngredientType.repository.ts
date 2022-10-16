@@ -29,7 +29,7 @@ export default class IngredientTypeRepository extends IngredientType {
   static async getIngredientTypesById(id: string): Promise<IngredientType> {
     const ingredientType = await this.repository.findOneBy({ id });
     if (!ingredientType) {
-      throw Error("No existing ingredient type matching ID");
+      throw Error("Aucun type d'ingrédient ne correspond à cet id.");
     }
     return ingredientType;
   }
@@ -52,6 +52,28 @@ export default class IngredientTypeRepository extends IngredientType {
     } else {
       await this.repository.save(newIngredientType);
       return newIngredientType;
+    }
+  }
+
+  static async updateIngredientType(id: string, type: string): Promise<IngredientType> {
+    try {
+      await this.getIngredientTypesById(id);
+    } catch (error: any) {
+      throw Error(error);
+    }
+    const updateIngredientType = {id, type} as IngredientType;
+    const errors = await validateOrRejectIngredientTypeCreation(updateIngredientType);
+    let validationError: string = "";
+    if (errors) {
+      for (const error of errors) {
+        for (const constraint of Object.values(error.constraints)) {
+          validationError += ` - ${constraint} - `;
+        }
+      }
+      throw Error(validationError);
+    } else {
+      await this.repository.save(updateIngredientType);
+      return updateIngredientType;
     }
   }
 }

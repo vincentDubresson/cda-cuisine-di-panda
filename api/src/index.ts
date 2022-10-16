@@ -14,6 +14,7 @@ app.get('/', (req, res) => {
 app.get('/api/ingredient-types', IngredientTypesController.get);
 app.get('/api/ingredient-types/:id', IngredientTypesController.getById);
 app.post('/api/ingredient-types', IngredientTypesController.post);
+app.put('/api/ingredient-types/:id', IngredientTypesController.put);
 
 const start = async () => {
   // Put there repositories initialization

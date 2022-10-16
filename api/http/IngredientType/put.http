@@ -1,0 +1,6 @@
+PUT http://127.0.0.1:4000/api/ingredient-types/d8a22e4d-4ef0-4c28-858f-3c5842d6d431
+Content-Type: application/json
+
+{
+  "type": "erz"
+}
