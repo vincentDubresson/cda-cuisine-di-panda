@@ -3,17 +3,15 @@ import { Column, Entity, Index, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export default class IngredientType {
-  constructor(
-    type: string,
-  ) {
+  constructor(type: string) {
     this.type = type;
   }
 
-  @PrimaryGeneratedColumn('uuid')
+  @PrimaryGeneratedColumn("uuid")
   id: string;
 
   @Column()
-  @Index({unique: true})
+  @Index({ unique: true })
   @MaxLength(255, {
     message: "Le type d'ingrédient ne doit pas dépasser 255 caractères.",
   })

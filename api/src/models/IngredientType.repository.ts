@@ -14,11 +14,13 @@ export default class IngredientTypeRepository extends IngredientType {
     this.repository.clear();
   }
 
-  static async initializeIngredientType(ingredientTypes: string[]): Promise<void> {
+  static async initializeIngredientType(
+    ingredientTypes: string[]
+  ): Promise<void> {
     // Maybe add here some repositories to clear
     await this.repository.clear();
     for (const ingredientType of ingredientTypes) {
-      await this.repository.save({type: ingredientType})
+      await this.repository.save({ type: ingredientType });
     }
   }
 
@@ -34,13 +36,17 @@ export default class IngredientTypeRepository extends IngredientType {
     return ingredientType;
   }
 
-  static async getIngredientTypeByName(name: string): Promise<IngredientType | null> {
-    return await this.repository.findOneBy({type: name})
+  static async getIngredientTypeByName(
+    name: string
+  ): Promise<IngredientType | null> {
+    return await this.repository.findOneBy({ type: name });
   }
 
   static async createIngredientType(type: string): Promise<IngredientType> {
     const newIngredientType = new IngredientType(type);
-    const errors = await validateOrRejectIngredientTypeCreation(newIngredientType);
+    const errors = await validateOrRejectIngredientTypeCreation(
+      newIngredientType
+    );
     let validationError: string = "";
     if (errors) {
       for (const error of errors) {
@@ -55,14 +61,17 @@ export default class IngredientTypeRepository extends IngredientType {
     }
   }
 
-  static async updateIngredientType(id: string, type: string): Promise<IngredientType> {
+  static async updateIngredientType(
+    id: string,
+    type: string
+  ): Promise<IngredientType> {
     try {
       await this.getIngredientTypesById(id);
+      const updateIngredientType = await this.repository.save({ id, type });
+      return updateIngredientType;
     } catch (error: any) {
       throw Error(error);
     }
-    const updateIngredientType = await this.repository.save({id, type});
-    return updateIngredientType;
   }
 
   static async deleteIngredientType(id: string): Promise<IngredientType> {

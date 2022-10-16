@@ -17,10 +17,10 @@ const getDatabase = async () => {
     console.log("#### - Successfully connected to database - ####");
   }
   return dataSource;
-}
+};
 
 const getRepository = async (entity: EntityTarget<any>) => {
   return (await getDatabase()).getRepository(entity);
-}
+};
 
 export { getDatabase, getRepository };
