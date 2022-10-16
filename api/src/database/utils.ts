@@ -4,7 +4,7 @@ const dataSource = new DataSource({
   type: "sqlite",
   database: "Cuisine-di-Panda.sqlite",
   synchronize: true,
-  entities: [__dirname + "/../models/**.*.entity.js"],
+  entities: [__dirname + "/../models/**/*.entity.js"],
   logging: ["query", "error"],
 });
 
