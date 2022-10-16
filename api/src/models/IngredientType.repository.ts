@@ -61,19 +61,16 @@ export default class IngredientTypeRepository extends IngredientType {
     } catch (error: any) {
       throw Error(error);
     }
-    const updateIngredientType = {id, type} as IngredientType;
-    const errors = await validateOrRejectIngredientTypeCreation(updateIngredientType);
-    let validationError: string = "";
-    if (errors) {
-      for (const error of errors) {
-        for (const constraint of Object.values(error.constraints)) {
-          validationError += ` - ${constraint} - `;
-        }
-      }
-      throw Error(validationError);
-    } else {
-      await this.repository.save(updateIngredientType);
-      return updateIngredientType;
+    const updateIngredientType = await this.repository.save({id, type});
+    return updateIngredientType;
+  }
+
+  static async deleteIngredientType(id: string): Promise<IngredientType> {
+    try {
+      const IngredientTypeToDelete = await this.getIngredientTypesById(id);
+      return await this.repository.remove(IngredientTypeToDelete);
+    } catch (error: any) {
+      throw Error(error);
     }
   }
 }

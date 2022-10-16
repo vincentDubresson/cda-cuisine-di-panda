@@ -45,5 +45,11 @@ export const put = async (req: Request, res: Response): Promise<void> => {
 }
 
 export const del = async (req: Request, res: Response): Promise<void> => {
-  
+  const { id } = req.params;
+  try {
+    await IngredientTypeRepository.deleteIngredientType(id);
+    res.json({ message: "Le type d'ingrédient a été supprimé avec succès." })
+  } catch (error) {
+    res.status(404).json({ error: getErrorMessage(error) });
+  }
 }

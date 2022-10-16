@@ -1,4 +1,4 @@
-PUT http://127.0.0.1:4000/api/ingredient-types/d8a22e4d-4ef0-4c28-858f-3c5842d6d431
+PUT http://127.0.0.1:4000/api/ingredient-types/cb9c5907-57a5-4ca7-9701-36c903eca53d
 Content-Type: application/json
 
 {
