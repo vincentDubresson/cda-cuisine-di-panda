@@ -12,6 +12,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/api/ingredient-types', IngredientTypesController.get);
+app.get('/api/ingredient-types/:id', IngredientTypesController.getById);
 
 const start = async () => {
   // Put there repositories initialization
@@ -19,7 +20,6 @@ const start = async () => {
 
   // Put there database tables initialization
   await IngredientTypeRepository.initializeIngredientType(ingredientTypes);
-
 
   app.listen(PORT, () => {
     console.log(`Success ! The server is running on port ${PORT}.`);
