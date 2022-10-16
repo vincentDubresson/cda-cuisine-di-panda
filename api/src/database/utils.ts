@@ -4,7 +4,7 @@ const dataSource = new DataSource({
   type: "sqlite",
   database: "Cuisine-di-Panda.sqlite",
   synchronize: true,
-  entities: [__dirname + "/../models/**.*.entity.js"],
+  entities: [__dirname + "/../models/**/*.entity.js"],
   logging: ["query", "error"],
 });
 
@@ -17,10 +17,10 @@ const getDatabase = async () => {
     console.log("#### - Successfully connected to database - ####");
   }
   return dataSource;
-}
+};
 
 const getRepository = async (entity: EntityTarget<any>) => {
   return (await getDatabase()).getRepository(entity);
-}
+};
 
 export { getDatabase, getRepository };

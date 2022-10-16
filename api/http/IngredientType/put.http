@@ -1,0 +1,6 @@
+PUT http://127.0.0.1:4000/api/ingredient-types/4f6cbaee-b69a-480a-8bd5-1e2d4201907c
+Content-Type: application/json
+
+{
+  "type": "zer"
+}
