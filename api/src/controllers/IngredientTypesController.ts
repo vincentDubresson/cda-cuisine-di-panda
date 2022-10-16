@@ -18,7 +18,13 @@ export const getById = async (req: Request, res: Response): Promise<void> => {
 };
 
 export const post = async (req: Request, res: Response): Promise<void> => {
-  
+  const { type } = req.body;
+  try {
+    const newIngredientType = await IngredientTypeRepository.createIngredientType(type);
+    res.status(201).json(newIngredientType);
+  } catch (error) {
+    res.status(404).json({ error: getErrorMessage(error) });
+  }
 }
 
 export const put = async (req: Request, res: Response): Promise<void> => {

@@ -13,6 +13,7 @@ app.get('/', (req, res) => {
 
 app.get('/api/ingredient-types', IngredientTypesController.get);
 app.get('/api/ingredient-types/:id', IngredientTypesController.getById);
+app.post('/api/ingredient-types', IngredientTypesController.post);
 
 const start = async () => {
   // Put there repositories initialization
