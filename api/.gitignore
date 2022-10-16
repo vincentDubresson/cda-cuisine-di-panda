@@ -1,0 +1,6 @@
+# Dépendances
+node_modules
+build
+
+# NoSql
+Cuisine-di-Panda.sqlite
