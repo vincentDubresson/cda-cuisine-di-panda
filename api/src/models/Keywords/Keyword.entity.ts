@@ -13,7 +13,7 @@ export default class Keyword {
   @Column()
   @Index({ unique: true })
   @MaxLength(255, {
-    message: "Le mot clé ne doit pas dépasser 255 caractères",
+    message: "un mot clé ne peut pas dépasser 255 caractères",
   })
   keyword: string;
 }
