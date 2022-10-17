@@ -11,8 +11,8 @@ export const getRoutes = (app: Application) => {
   });
   // Routes for Ingredient Types.
   app.get(`${INGREDIENT_TYPES_PATH}`, IngredientTypesController.get);
-  app.get(`${INGREDIENT_TYPES_PATH}/:id`, IngredientTypesController.getById);
+  app.get(`${INGREDIENT_TYPES_PATH}/:slug`, IngredientTypesController.getBySlug);
   app.post(`${INGREDIENT_TYPES_PATH}`, IngredientTypesController.post);
-  app.put(`${INGREDIENT_TYPES_PATH}/:id`, IngredientTypesController.put);
-  app.delete(`${INGREDIENT_TYPES_PATH}/:id`, IngredientTypesController.del);
+  app.put(`${INGREDIENT_TYPES_PATH}/:slug`, IngredientTypesController.put);
+  app.delete(`${INGREDIENT_TYPES_PATH}/:slug`, IngredientTypesController.del);
 };

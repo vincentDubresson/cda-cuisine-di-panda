@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import IngredientTypeRepository from "../models/IngredientType.repository";
-import { ingredientTypeValidation } from "../models/IngredientType.service";
+import IngredientTypeRepository from "../models/IngredientTypes/IngredientType.repository";
+import { ingredientTypeValidation } from "../models/IngredientTypes/IngredientType.service";
 import { getErrorMessage } from "../utils";
 
 export const get = async (req: Request, res: Response): Promise<void> => {
@@ -8,11 +8,11 @@ export const get = async (req: Request, res: Response): Promise<void> => {
   res.json(ingredientTypes);
 };
 
-export const getById = async (req: Request, res: Response): Promise<void> => {
-  const { id } = req.params;
+export const getBySlug = async (req: Request, res: Response): Promise<void> => {
+  const { slug } = req.params;
   try {
     const ingredientType =
-      await IngredientTypeRepository.getIngredientTypesById(id);
+      await IngredientTypeRepository.getIngredientTypeBySlug(slug);
     res.status(201).json(ingredientType);
   } catch (error) {
     res.status(404).json({ error: getErrorMessage(error) });
@@ -37,12 +37,11 @@ export const post = async (req: Request, res: Response): Promise<void> => {
 };
 
 export const put = async (req: Request, res: Response): Promise<void> => {
-  const { id } = req.params;
-  const { type } = req.body;
+  const { slug } = req.params;
+  const { id, type } = req.body;
   try {
     await ingredientTypeValidation(type);
-    const updateIngredientType =
-      await IngredientTypeRepository.updateIngredientType(id, type);
+    const updateIngredientType = await IngredientTypeRepository.updateIngredientType(id, type, slug);
     res.status(201).json(updateIngredientType);
   } catch (error) {
     res.status(404).json({ error: getErrorMessage(error) });
@@ -50,9 +49,9 @@ export const put = async (req: Request, res: Response): Promise<void> => {
 };
 
 export const del = async (req: Request, res: Response): Promise<void> => {
-  const { id } = req.params;
+  const { slug } = req.params;
   try {
-    await IngredientTypeRepository.deleteIngredientType(id);
+    await IngredientTypeRepository.deleteIngredientType(slug);
     res.json({ message: "Le type d'ingrédient a été supprimé avec succès." });
   } catch (error) {
     res.status(404).json({ error: getErrorMessage(error) });

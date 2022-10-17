@@ -1,6 +1,7 @@
-PUT http://127.0.0.1:4000/api/ingredient-types/4f6cbaee-b69a-480a-8bd5-1e2d4201907c
+PUT http://127.0.0.1:4000/api/ingredient-types/entrees
 Content-Type: application/json
 
 {
-  "type": "zer"
+  "id": "fe4a0603-4020-45fb-9a66-73d2f5efc719",
+  "type": "azerazer"
 }

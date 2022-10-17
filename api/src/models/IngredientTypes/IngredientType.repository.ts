@@ -1,5 +1,6 @@
 import { Repository } from "typeorm";
-import { getRepository } from "../database/utils";
+import slugify from "slugify";
+import { getRepository } from "../../database/utils";
 import IngredientType from "./IngredientType.entity";
 import { validateOrRejectIngredientTypeCreation } from "./IngredientType.service";
 
@@ -15,12 +16,12 @@ export default class IngredientTypeRepository extends IngredientType {
   }
 
   static async initializeIngredientType(
-    ingredientTypes: string[]
+    ingredientTypes: {type: string, slug: string}[]
   ): Promise<void> {
     // Maybe add here some repositories to clear
     await this.repository.clear();
     for (const ingredientType of ingredientTypes) {
-      await this.repository.save({ type: ingredientType });
+      await this.repository.save({ type: ingredientType.type, slug: ingredientType.slug });
     }
   }
 
@@ -42,8 +43,19 @@ export default class IngredientTypeRepository extends IngredientType {
     return await this.repository.findOneBy({ type: name });
   }
 
+  static async getIngredientTypeBySlug(
+    slug: string
+  ): Promise<IngredientType | null> {
+    const ingredientType = await this.repository.findOneBy({ slug: slug });
+    if (!ingredientType) {
+      throw Error("Type d'ingrédient non trouvé.");
+    }
+    return ingredientType;
+  }
+
   static async createIngredientType(type: string): Promise<IngredientType> {
-    const newIngredientType = new IngredientType(type);
+    const slug = slugify(type, {lower: true});
+    const newIngredientType = new IngredientType(type, slug);
     const errors = await validateOrRejectIngredientTypeCreation(
       newIngredientType
     );
@@ -63,20 +75,22 @@ export default class IngredientTypeRepository extends IngredientType {
 
   static async updateIngredientType(
     id: string,
-    type: string
+    type: string,
+    slug: string,
   ): Promise<IngredientType> {
+    const newSlug = slugify(type, {lower: true});
     try {
       await this.getIngredientTypesById(id);
-      const updateIngredientType = await this.repository.save({ id, type });
+      const updateIngredientType = await this.repository.save({ id, type, slug: newSlug });
       return updateIngredientType;
     } catch (error: any) {
       throw Error(error);
     }
   }
 
-  static async deleteIngredientType(id: string): Promise<IngredientType> {
+  static async deleteIngredientType(slug: string): Promise<IngredientType> {
     try {
-      const IngredientTypeToDelete = await this.getIngredientTypesById(id);
+      const IngredientTypeToDelete = await this.getIngredientTypeBySlug(slug) as IngredientType;
       return await this.repository.remove(IngredientTypeToDelete);
     } catch (error: any) {
       throw Error(error);
