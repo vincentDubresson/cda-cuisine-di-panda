@@ -1,4 +1,10 @@
-export const get = async (req: Request, res: Response): Promise<void> => {};
+import { Request, Response } from "express";
+import KeywordRepository from "../models/Keywords/Keyword.repository";
+
+export const get = async (req: Request, res: Response): Promise<void> => {
+  const keywords = await KeywordRepository.getKeywords();
+  res.json(keywords);
+};
 
 export const getById = async (req: Request, res: Response): Promise<void> => {};
 

@@ -20,4 +20,8 @@ export default class KeywordRepository extends Keyword {
       await this.repository.save({ keyword: keyword });
     }
   }
+
+  static async getKeywords(): Promise<Keyword[]> {
+    return this.repository.find();
+  }
 }
