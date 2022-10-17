@@ -1,5 +1,5 @@
-import IngredientTypeRepository from "./models/IngredientType.repository";
-import { ingredientTypes } from "./models/IngredientType.fixtures";
+import IngredientTypeRepository from "./models/IngredientTypes/IngredientType.repository";
+import { ingredientTypes } from "./models/IngredientTypes/IngredientType.fixtures";
 import { Application } from "express";
 
 export const PORT: number = 4000;
