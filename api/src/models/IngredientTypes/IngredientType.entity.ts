@@ -1,7 +1,8 @@
-import { MaxLength } from "class-validator";
+import { ObjectType, Field, ID } from "type-graphql";
 import { Column, Entity, Index, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
+@ObjectType()
 export default class IngredientType {
   constructor(type: string, slug: string) {
     this.type = type;
@@ -9,16 +10,16 @@ export default class IngredientType {
   }
 
   @PrimaryGeneratedColumn("uuid")
+  @Field(() => ID)
   id: string;
 
   @Column()
   @Index({ unique: true })
-  @MaxLength(255, {
-    message: "Le type d'ingrédient ne doit pas dépasser 255 caractères.",
-  })
+  @Field()
   type: string;
 
   @Column()
   @Index({ unique: true })
+  @Field()
   slug: string;
 }

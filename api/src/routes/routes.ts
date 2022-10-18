@@ -1,8 +1,8 @@
-import { Application } from "express";
+/* import { Application } from "express";
 import * as IngredientTypesController from "../controllers/IngredientTypesController";
-import { PORT } from "../utils";
+//import { PORT } from "../utils";
 
-const INGREDIENT_TYPES_PATH = "/api/ingredient-types";
+/* const INGREDIENT_TYPES_PATH = "/api/ingredient-types";
 
 export const getRoutes = (app: Application) => {
   // Home Route
@@ -15,4 +15,4 @@ export const getRoutes = (app: Application) => {
   app.post(`${INGREDIENT_TYPES_PATH}`, IngredientTypesController.post);
   app.put(`${INGREDIENT_TYPES_PATH}/:slug`, IngredientTypesController.put);
   app.delete(`${INGREDIENT_TYPES_PATH}/:slug`, IngredientTypesController.del);
-};
+}; */
