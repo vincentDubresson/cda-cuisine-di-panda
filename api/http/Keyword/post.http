@@ -3,8 +3,7 @@ Content-Type: application/json
 
 {
     "keywords": [
-    "aaa",
-    "bbb",
-    "ccc"
+    "ccc",
+    ""
   ]
 }

@@ -3,8 +3,9 @@ import { Column, Entity, Index, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export default class Keyword {
-  constructor(keyword: string) {
+  constructor(keyword: string, slug: string) {
     this.keyword = keyword;
+    this.slug = slug;
   }
 
   @PrimaryGeneratedColumn("uuid")
@@ -16,4 +17,8 @@ export default class Keyword {
     message: "un mot clé ne peut pas dépasser 255 caractères",
   })
   keyword: string;
+
+  @Column()
+  @Index({ unique: true })
+  slug: string;
 }
