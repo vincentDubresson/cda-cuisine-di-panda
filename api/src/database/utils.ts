@@ -10,7 +10,7 @@ const dataSource = new DataSource({
 
 let initialized = false;
 
-const getDatabase = async () => {
+export const getDatabase = async () => {
   if (!initialized) {
     await dataSource.initialize();
     initialized = true;
@@ -19,8 +19,6 @@ const getDatabase = async () => {
   return dataSource;
 };
 
-const getRepository = async (entity: EntityTarget<any>) => {
+export const getRepository = async (entity: EntityTarget<any>) => {
   return (await getDatabase()).getRepository(entity);
 };
-
-export { getDatabase, getRepository };

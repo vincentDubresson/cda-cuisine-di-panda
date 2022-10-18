@@ -1,4 +1,4 @@
-export const ingredientTypes: {type: string, slug: string}[] = [
+export const ingredientTypes: { type: string; slug: string }[] = [
   {
     type: "Apéritifs",
     slug: "aperitifs",
