@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import KeywordRepository from "../models/Keywords/Keyword.repository";
-import { getErrorMessage } from "../utils";
+//import { getErrorMessage } from "../utils";
 
 export const get = async (req: Request, res: Response): Promise<void> => {
   const keywords = await KeywordRepository.getKeywords();
@@ -14,7 +14,7 @@ export const getBySlug = async (req: Request, res: Response): Promise<void> => {
       await KeywordRepository.getKeywordBySlug(slug);
     res.status(201).json(ingredientType);
   } catch (error) {
-    res.status(404).json({ error: getErrorMessage(error) });
+    //res.status(404).json({ error: getErrorMessage(error) });
   }
 };
 
@@ -31,7 +31,7 @@ export const post = async (req: Request, res: Response): Promise<void> => {
           await KeywordRepository.createKeyword(keyword);
         
       } catch (error) {
-        res.status(404).json({ error: getErrorMessage(error) });
+        //res.status(404).json({ error: getErrorMessage(error) });
       }
     }
   };
