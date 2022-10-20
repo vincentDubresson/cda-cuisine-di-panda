@@ -10,6 +10,6 @@ export class CreateIngredientTypeArgs {
 
 @ArgsType()
 export class UpdateIngredientTypeArgs extends CreateIngredientTypeArgs {
-  @Field(() => ID)
-  id: string;
+  @Field()
+  id: number;
 }

@@ -15,7 +15,7 @@ export default class IngredientTypeResolver {
   }
 
   @Query(() => IngredientType)
-  ingredientType(@Arg("id") id: string): Promise<IngredientType> {
+  ingredientType(@Arg("id") id: number): Promise<IngredientType> {
     return IngredientTypeRepository.getIngredientTypeById(id);
   }
 
@@ -39,7 +39,7 @@ export default class IngredientTypeResolver {
   }
 
   @Mutation(() => IngredientType)
-  deleteIngredientType(@Arg("id") id: string): Promise<IngredientType> {
+  deleteIngredientType(@Arg("id") id: number): Promise<IngredientType> {
     return IngredientTypeRepository.deleteIngredientType(id);
   }
 }

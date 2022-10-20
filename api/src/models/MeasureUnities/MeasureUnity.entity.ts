@@ -8,9 +8,9 @@ export default class MeasureUnity {
     this.unity = unity
   }
 
-  @PrimaryGeneratedColumn("uuid")
-  @Field(() => ID)
-  id: string;
+  @PrimaryGeneratedColumn()
+  @Field()
+  id: number;
 
   @Column()
   @Index({ unique: true })

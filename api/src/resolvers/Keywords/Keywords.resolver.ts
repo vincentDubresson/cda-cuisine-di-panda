@@ -11,7 +11,7 @@ export default class KeywordResolver {
   }
 
   @Query(() => Keyword)
-  keyword(@Arg("id") id: string): Promise<Keyword> {
+  keyword(@Arg("id") id: number): Promise<Keyword> {
     return KeywordRepository.getKeywordById(id);
   }
 
@@ -26,7 +26,7 @@ export default class KeywordResolver {
   }
 
   @Mutation(() => Keyword)
-  deleteKeyword(@Arg("id") id: string): Promise<Keyword> {
+  deleteKeyword(@Arg("id") id: number): Promise<Keyword> {
     return KeywordRepository.deleteKeyword(id);
   }
 }
