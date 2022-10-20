@@ -1,8 +1,12 @@
 import { DataSource, EntityTarget } from "typeorm";
 
 const dataSource = new DataSource({
-  type: "sqlite",
-  database: "Cuisine-di-Panda.sqlite",
+  type: "mysql",
+  host: "localhost",
+  port: 3306,
+  username: "vincentDubresson",
+  password: "PandAMysqL69340!",
+  database: "cuisine-di-panda",
   synchronize: true,
   entities: [__dirname + "/../models/**/**/*.entity.js"],
   logging: ["query", "error"],
