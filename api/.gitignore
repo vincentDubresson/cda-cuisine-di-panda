@@ -1,6 +1,3 @@
 # Dépendances
 node_modules
 build
-
-# Database utils
-/src/database/utils.ts
