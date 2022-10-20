@@ -1,7 +1,8 @@
-import { MaxLength } from "class-validator";
+import { Field, ID, ObjectType } from "type-graphql";
 import { Column, Entity, Index, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
+@ObjectType()
 export default class Keyword {
   constructor(keyword: string, slug: string) {
     this.keyword = keyword;
@@ -9,16 +10,16 @@ export default class Keyword {
   }
 
   @PrimaryGeneratedColumn("uuid")
+  @Field(() => ID)
   id: string;
 
   @Column()
   @Index({ unique: true })
-  @MaxLength(255, {
-    message: "un mot clé ne peut pas dépasser 255 caractères",
-  })
+  @Field()
   keyword: string;
 
   @Column()
   @Index({ unique: true })
+  @Field()
   slug: string;
 }
