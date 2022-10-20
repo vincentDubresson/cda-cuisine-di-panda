@@ -1,22 +1,30 @@
 export const ingredientTypes: { type: string; slug: string }[] = [
   {
-    type: "Apéritifs",
-    slug: "aperitifs",
+    type: "Chocolats, biscuits et produits sucrés",
+    slug: "chocolats-biscuits-produits-sucres",
   },
   {
-    type: "Entrées",
-    slug: "entrees",
+    type: "Fruits et légumes",
+    slug: "fruits-legumes",
   },
   {
-    type: "Plats",
-    slug: "plats",
+    type: "Herbes, épices et condiments",
+    slug: "herbes-epices-condiments",
   },
   {
-    type: "Desserts",
-    slug: "desserts",
+    type: "Oeufs, fromages et produits laitiers",
+    slug: "oeufs-formages-produits-laitiers",
   },
   {
-    type: "Boissons",
-    slug: "boissons",
+    type: "Pâtes, riz, céréales et pain",
+    slug: "pates-riz-cereales-pain",
   },
+  {
+    type: "Poissons et fruits de mer",
+    slug: "poissons-fruits-mer",
+  },
+  {
+    type: "Viandes et charcuterie",
+    slug: "viandes-charcuterie",
+  }
 ];
