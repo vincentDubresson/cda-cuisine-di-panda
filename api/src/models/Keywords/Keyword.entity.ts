@@ -9,9 +9,9 @@ export default class Keyword {
     this.slug = slug;
   }
 
-  @PrimaryGeneratedColumn("uuid")
-  @Field(() => ID)
-  id: string;
+  @PrimaryGeneratedColumn()
+  @Field()
+  id: number;
 
   @Column()
   @Index({ unique: true })

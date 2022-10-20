@@ -33,7 +33,7 @@ export default class IngredientTypeRepository extends IngredientType {
     return this.repository.find();
   }
 
-  static async getIngredientTypeById(id: string): Promise<IngredientType> {
+  static async getIngredientTypeById(id: number): Promise<IngredientType> {
     const ingredientType = await this.repository.findOneBy({ id });
 
     if (!ingredientType) {
@@ -70,7 +70,7 @@ export default class IngredientTypeRepository extends IngredientType {
   }
 
   static async updateIngredientType(
-    id: string,
+    id: number,
     type: string
   ): Promise<IngredientType> {
     if (isEmpty(type.trim()))
@@ -86,7 +86,7 @@ export default class IngredientTypeRepository extends IngredientType {
     return await this.repository.save({ id, type, slug: newSlug });
   }
 
-  static async deleteIngredientType(id: string): Promise<IngredientType> {
+  static async deleteIngredientType(id: number): Promise<IngredientType> {
     const ingredientType = await this.getIngredientTypeById(id);
 
     if (!ingredientType)

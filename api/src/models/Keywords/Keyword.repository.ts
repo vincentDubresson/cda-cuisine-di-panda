@@ -32,7 +32,7 @@ export default class KeywordRepository extends Keyword {
     return this.repository.find();
   }
 
-  static async getKeywordById(id: string): Promise<Keyword> {
+  static async getKeywordById(id: number): Promise<Keyword> {
     const keyword = await this.repository.findOneBy({ id });
 
     if (!keyword) {
@@ -62,7 +62,7 @@ export default class KeywordRepository extends Keyword {
     return await this.repository.save(newKeyword);
   }
 
-  static async deleteKeyword(id: string): Promise<Keyword> {
+  static async deleteKeyword(id: number): Promise<Keyword> {
     const keywordToDelete = await this.getKeywordById(id);
 
     if (!keywordToDelete) throw Error("Aucun mot clé ne correspond à cet ID.");
