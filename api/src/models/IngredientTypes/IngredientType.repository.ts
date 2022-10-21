@@ -46,11 +46,16 @@ export default class IngredientTypeRepository extends IngredientType {
   static async getIngredientTypeByName(
     name: string
   ): Promise<IngredientType | null> {
-    return await this.repository.findOneBy({ type: name });
+    const ingredientType = await this.repository.findOneBy({ type: name });
+
+    if (!ingredientType) {
+      throw Error("Aucun type d'ingrédient ne correspond à cet id.");
+    }
+    return ingredientType;
   }
 
   static async getIngredientTypeBySlug(slug: string): Promise<IngredientType> {
-    const ingredientType = await this.repository.findOneBy({ slug: slug });
+    const ingredientType = await this.repository.findOneBy({ slug });
 
     if (!ingredientType) {
       throw Error("Type d'ingrédient non trouvé.");
