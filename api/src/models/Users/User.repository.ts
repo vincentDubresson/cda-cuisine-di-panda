@@ -1,4 +1,3 @@
-import { resolveGraphqlOptions } from "apollo-server-core";
 import { isEmpty } from "class-validator";
 import { Repository } from "typeorm";
 import { getRepository } from "../../database/utils";

@@ -15,6 +15,7 @@ import RateRepository from "./models/Rates/Rate.repository";
 import RateResolver from "./resolvers/Rates/Rates.resolver";
 import UserRepository from "./models/Users/User.repository";
 import UserResolver from "./resolvers/Users/Users.resolver";
+import OriginRepository from "./models/Origins/Origin.repository";
 
 import { ingredientTypes } from "./models/IngredientTypes/IngredientType.fixtures";
 import { keywords } from "./models/Keywords/Keyword.fixtures";
@@ -22,6 +23,8 @@ import { measureUnities } from "./models/MeasureUnities/MeasureUnity.fixtures";
 import { categories } from "./models/Categories/Category.fixtures";
 import { rates } from "./models/Rates/Rate.fixtures";
 import { users } from "./models/Users/User.fixtures";
+import { origins } from "./models/Origins/Origin.fixtures";
+import OriginResolver from "./resolvers/Origins/Origins.resolver";
 
 export const startServer = async () => {
   const server = new ApolloServer({
@@ -33,6 +36,7 @@ export const startServer = async () => {
         CategoryResolver,
         RateResolver,
         UserResolver,
+        OriginResolver,
       ],
       emitSchemaFile: path.resolve(__dirname, "schema.gql"),
     }),
@@ -49,6 +53,7 @@ export const startServer = async () => {
     await CategoryRepository.initializeRepository();
     await RateRepository.initializeRepository();
     await UserRepository.initializeRepository();
+    await OriginRepository.initializeRepository();
     // Put there database tables initialization
     await IngredientTypeRepository.initializeIngredientType(ingredientTypes);
     await KeywordRepository.initializeKeyword(keywords);
@@ -56,6 +61,7 @@ export const startServer = async () => {
     await CategoryRepository.initializeCategory(categories);
     await RateRepository.initializeRate(rates);
     await UserRepository.initializeUser(users);
+    await OriginRepository.initializeOrigin(origins);
 
     console.log(`🚀  Server ready at ${url}`);
   });
