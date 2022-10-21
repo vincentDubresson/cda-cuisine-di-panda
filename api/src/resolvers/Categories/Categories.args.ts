@@ -2,14 +2,14 @@ import { ArgsType, Field } from "type-graphql";
 import { Length } from "class-validator";
 
 @ArgsType()
-export class CreateIngredientTypeArgs {
+export class CreateCategoryArgs {
   @Field()
   @Length(1, 255)
-  type: string;
+  name: string;
 }
 
 @ArgsType()
-export class UpdateIngredientTypeArgs extends CreateIngredientTypeArgs {
+export class UpdateCategoryArgs extends CreateCategoryArgs {
   @Field()
   id: number;
 }
