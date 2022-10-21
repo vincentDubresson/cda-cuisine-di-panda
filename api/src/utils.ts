@@ -16,11 +16,20 @@ import MeasureUnityResolver from "./resolvers/MeasureUnities/MeasureUnities.reso
 import CategoryRepository from "./models/Categories/Category.Repository";
 import { categories } from "./models/Categories/Category.fixtures";
 import CategoryResolver from "./resolvers/Categories/Categories.resolver";
+import RateRepository from "./models/Rates/Rate.repository";
+import { rates } from "./models/Rates/Rate.fixtures";
+import RateResolver from "./resolvers/Rates/Rates.resolver";
 
 export const startServer = async () => {
   const server = new ApolloServer({
     schema: await buildSchema({
-      resolvers: [IngredientTypeResolver, KeywordResolver, MeasureUnityResolver, CategoryResolver],
+      resolvers: [
+        IngredientTypeResolver,
+        KeywordResolver,
+        MeasureUnityResolver,
+        CategoryResolver,
+        RateResolver,
+      ],
       emitSchemaFile: path.resolve(__dirname, "schema.gql"),
     }),
     csrfPrevention: true,
@@ -34,11 +43,13 @@ export const startServer = async () => {
     await KeywordRepository.initializeRepository();
     await MeasureUnityRepository.initializeRepository();
     await CategoryRepository.initializeRepository();
+    await RateRepository.initializeRepository();
     // Put there database tables initialization
     await IngredientTypeRepository.initializeIngredientType(ingredientTypes);
     await KeywordRepository.initializeKeyword(keywords);
     await MeasureUnityRepository.initializeMeasureUnity(measureUnities);
     await CategoryRepository.initializeCategory(categories);
+    await RateRepository.initializeRate(rates);
 
     console.log(`🚀  Server ready at ${url}`);
   });

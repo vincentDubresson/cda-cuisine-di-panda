@@ -3,9 +3,9 @@ import { Column, Entity, Index, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 @ObjectType()
-export default class MeasureUnity {
-  constructor(unity: string) {
-    this.unity = unity
+export default class Rate {
+  constructor(rate: number) {
+    this.rate = rate
   }
 
   @PrimaryGeneratedColumn()
@@ -15,5 +15,5 @@ export default class MeasureUnity {
   @Column()
   @Index({ unique: true })
   @Field()
-  unity: string;
+  rate: number;
 }
